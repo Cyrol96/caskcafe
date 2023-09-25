@@ -1,0 +1,355 @@
+* {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+	color: rgb(238, 238, 238);
+	text-decoration: none;
+}
+
+a:hover {
+	color: #333;
+	text-decoration: none;
+}
+
+/* body */
+body {
+	/* background: #fafafa; */
+	color: #555;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	background-color:rgba(174, 149, 88, 0.849);
+	/* background: url(../image/background_image/Caskcafe_img2.jpg); */
+	/* background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat; */
+}
+
+	
+/* header */
+#header {
+	height: 80px;
+	margin: 0 auto;
+	width: 1024px;
+}
+
+#header h1 {
+	font-size: 300%;
+	font-weight: bold;
+	letter-spacing: -3px;
+	/* padding: 5px; */
+	margin-bottom: -20px;
+}
+
+#header h2 {
+	color: #CCC;
+	font-size: 200%;
+	letter-spacing: -2px;
+	text-align: right;
+}
+
+.products-gallary {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gallery {
+    width: 25%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+.gallery img {
+	width: 300px;
+	height: 300px;
+}
+
+.desc {
+	padding: 10px;
+	text-align: center;
+	font-size: 16px;
+}
+
+
+/* image gallary */
+div.gallery {  
+    max-width: 250px; /* Maximum width for larger screens */
+}
+
+
+div.gallery img {
+	width: 100%;
+	height: auto;
+}
+
+div.desc {
+	padding: 15px;
+	text-align: center;
+}
+
+/* navigation */
+#navigation {
+	margin: 0 auto;
+	width: 1024px;
+	height: 40px;
+}
+
+#navigation li {
+	float: left;
+	width: 20%;
+	list-style: none;
+}
+
+#navigation a {
+	color: #ffffff;
+	background-color: #555;
+	display: block;
+	line-height: 40px;
+	text-align: center;
+}
+
+h4{
+	float:right;
+	width: 20%;
+	list-style: none;
+}
+
+#navigation a:hover {
+	background: #e3e3e3;
+	color: #555;
+}
+
+#navigation .active {
+	background: #e3e3e3;
+	color: #777;
+}
+
+.header h1 {
+	padding-top: 15rem;
+}
+
+/* content */
+#content {
+	margin: 25px auto;
+	padding: 0 0 20px;
+	width: 1024px;
+}
+
+.home-intro {
+	padding-top: 3%;
+}
+
+#content h1 {
+	padding: 5px 0 0;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	color: rgb(223, 33, 33);
+	font-style: italic;
+	margin-top: -20px;
+}
+
+#content h2 {
+	color: #555;
+	font-style: italic;
+	margin-top: -20px;
+
+}
+
+#content h3 {
+	font-size: large;
+	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	color: gold;
+
+
+
+}
+
+
+
+/* #content h4 {
+	text-align: right;
+} */
+
+/* #content p {
+	padding: 20px 20px 0;
+	text-align: center;
+	font-weight: 900;
+	color: black;
+} */
+
+/* footer */
+#footer {
+	border-top: 1px solid #999;
+	height: 50px;
+	margin: 0 auto;
+	padding: 10px;
+	width: 1024px;
+}
+
+#footer p {
+	text-align: center;
+}
+
+#admin {
+	text-align: right;
+	font-weight: 900;
+	border: 5% rgb(245, 240, 240);
+	color: rgb(8, 9, 9);
+
+}
+
+.success {
+	border: 2px solid rgb(14, 14, 14);
+	/* background-color: lawngreen; */
+	color: rgb(0, 0, 0);
+}
+
+* {
+	box-sizing: border-box
+}
+
+/* Sign up form Style area*/
+
+input[type=text],
+input[type=password],input[type=tel],input[type=email] {
+	width: 100%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	display: inline-block;
+	border: none;
+	background: #f1f1f1;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+	background-color: #ddd;
+	outline: none;
+}
+
+hr {
+	/* border: 1px solid #f1f1f1; */
+	margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+	background-color: #04AA6D;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	opacity: 0.9;
+}
+
+button:hover {
+	opacity: 1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+	padding: 14px 20px;
+	background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn,
+.signupbtn {
+	float: left;
+	width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+	padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+
+/* Login style */
+
+/* For screens smaller than 768px */
+@media (max-width: 768px) {
+	#header {
+	  width: 100%;
+	}
+  
+	#header h1 {
+	  font-size: 200%;
+	  margin-bottom: -10px;
+	}
+  
+	#header h2 {
+	  font-size: 150%;
+	  text-align: center;
+	}
+  
+	 
+  
+	.gallery {
+	  width: 50%;
+	}
+  
+	.desc {
+	  font-size: 14px;
+	}
+  
+	#navigation {
+	  width: 100%;
+	}
+  
+	#navigation li {
+	  width: 25%;
+	}
+  
+	h4 {
+	  display: none;
+	}
+  
+	#content {
+	  width: 100%;
+	}
+  
+	#content h1 {
+	  font-size: 250%;
+	  margin-top: 0;
+	}
+  
+	#content h2 {
+	  font-size: 180%;
+	}
+  
+	#content h3 {
+	  font-size: 16px;
+	}
+  
+	#admin {
+	  text-align: center;
+	}
+  
+	/* Sign up form styles */
+	input[type=text], input[type=password], input[type=tel], input[type=email] {
+	  width: 100%;
+	  padding: 10px;
+	  margin: 5px 0 22px 0;
+	}
+  
+	/* Float cancel and signup buttons and add an equal width */
+	.cancelbtn,
+	.signupbtn {
+	  width: 100%;
+	}
+  }
+  
+  .psw{
+	color: #f44336;
+  }
