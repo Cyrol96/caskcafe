@@ -1,7 +1,7 @@
 <?php
 //defines 2 functions used by the login/logout script
 //redirect user function
-    function redirect_user($page="login.php",){
+    function redirect_user($page="./index.php",){
         //use this to switch location
         header("Location: $page");
         exit();

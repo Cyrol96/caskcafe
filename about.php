@@ -4,9 +4,9 @@ include './inc/header.php'
     ?>
 <br>
 
-<h2 class="text-light">Our Story</h2>
+<h2 class="text-bold">Our Story</h2>
 
-<h3 class="text-dark">Caskcafe is Nigeria’s pioneer and number one healthy food chain, providing fresh, delicious,
+<h3 class="text-white">Caskcafe is Nigeria’s pioneer and number one healthy food chain, providing fresh, delicious,
     nutrient-rich healthy meals and committed to promoting a healthy lifestyle. CASK CAFE IS BEST and that is how we win
     every day,
     selling a wide range of fresh salads, juices, smoothies, parfait, fiesta wraps, sandwich and other quick on the go

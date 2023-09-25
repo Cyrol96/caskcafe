@@ -33,7 +33,7 @@ if (!$result) {
     Please give us a try and you'll keep coming back for more ☺️</h5>
 
 <!-- Add drop-down list for filtering by category -->
-<form method="get  ">
+<form method="get ">
 <label for="category">Filter by category:</label>
 <select name="category" id="category">
     <option value="">All</option>

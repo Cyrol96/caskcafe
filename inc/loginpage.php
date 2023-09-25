@@ -18,13 +18,13 @@ if(isset($errors) && !empty($errors)){
 ?>
 <div class="indent"><br>
 <h2>Login</h2>
-<form action="/action_page.php" method="post">
+<form action="./loggedin.php" method="post">
   <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label for="uname"></label>
+    <input type="text" placeholder="Username or Email" name="uname" required>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <label for="psw"></label>
+    <input type="password" placeholder="Password" name="psw" required>
         
     <button type="submit">Login</button>
     <label>
