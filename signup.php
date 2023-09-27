@@ -1,6 +1,13 @@
+<!-- Note:
+take out the phone and adress in the sign up 
+and Just one username instead of firstname and last name -->
+
 <?php
 $page_title = 'Cask Cafe | Sign Up';
 include './inc/header.php';
+
+// Connect to the database
+require('./dbconnect/dbconnect.php');
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -27,10 +34,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!filter_var($cust_email, FILTER_VALIDATE_EMAIL)) {
             $errors['cust_email'] = 'Please enter a valid email address.';
         } else {
-            // Check if the email address is already registered
-            require('./dbconnect/dbconnect.php');
-            $existing_email_check = "SELECT cust_email FROM customers WHERE cust_email = '$cust_email'";
+//=================fixed ========================
+            // $existing_email_check = "SELECT cust_email FROM customers WHERE cust_email = '$cust_email'";
+            $existing_email_check = "SELECT email FROM user WHERE email = '$cust_email'";
+//=================end section ==================
             $existing_email_result = mysqli_query($dbc, $existing_email_check);
+            echo $existing_email_check;
             if (mysqli_num_rows($existing_email_result) > 0) {
                 $errors['cust_email'] = 'This email address is already registered.';
             }
@@ -59,8 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Hash the password
         $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
 
-        // Connect to the database
-        require('./dbconnect/dbconnect.php');
 
         // Make the query
         $q = "INSERT INTO customers (f_name, l_name, cust_email, cust_phone, cust_address, hashed_pass) VALUES ('$f_name', '$l_name', '$cust_email', '$cust_phone', '$cust_address', '$hashed_pass')";

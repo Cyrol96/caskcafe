@@ -2,7 +2,10 @@
 
 session_start();
 if(!isset($_SESSION['userid']) && !isset($_SESSION['agent'])){
-    require('inc/loginfuncitons.php');
+    // ================fixed==================
+    //require('inc/loginfuncitons.php');
+    require('./inc/loginfunctions.php');
+    // ================end section ==================
     redirect_user();//by default, go to login.php
 }
 
