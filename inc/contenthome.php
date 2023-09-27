@@ -44,7 +44,7 @@ if (!$result) {
 </form>
 
 <!-- products gallary images section -->
-<!-- Modify your product gallery section -->
+
 <section class="products-gallary">
     <?php
     if (mysqli_num_rows($result) > 0):

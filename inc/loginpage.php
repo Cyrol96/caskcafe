@@ -21,7 +21,7 @@ if(isset($errors) && !empty($errors)){
 <form action="./loggedin.php" method="post">
   <div class="container">
     <label for="uname"></label>
-    <input type="text" placeholder="Username or Email" name="uname" required>
+    <input type="text" placeholder="Email" name="uname" required>
 
     <label for="psw"></label>
     <input type="password" placeholder="Password" name="psw" required>

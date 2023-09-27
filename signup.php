@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $cust_phone = !empty($_POST['cust_phone']) ? trim($_POST['cust_phone']) : '';
 
-    $cust_address = !empty($_POST['cust_address']) ? trim($_POST['cust_address']) : '';
+    // $cust_address = !empty($_POST['cust_address']) ? trim($_POST['cust_address']) : '';
 
     // Check for a password and match against the confirmed password
     if (!empty($_POST['pass1'])) {
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         // Make the query
-        $q = "INSERT INTO customers (f_name, l_name, cust_email, cust_phone, cust_address, hashed_pass) VALUES ('$f_name', '$l_name', '$cust_email', '$cust_phone', '$cust_address', '$hashed_pass')";
+        $q = "INSERT INTO customers (f_name, l_name, cust_email, cust_phone, hashed_pass) VALUES ('$f_name', '$l_name', '$cust_email', '$cust_phone', '$hashed_pass')";
 
         // Run the query
         $r = @mysqli_query($dbc, $q);

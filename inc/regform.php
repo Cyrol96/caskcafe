@@ -1,8 +1,7 @@
 <!-- register form -->
 <div class="regform">
 	<form action="signup.php" method="post" novalidate>
-		<p><span style="font-style: italic, bold">All fields with "*" are required.</span></p>
-		<label for="f_name">First Name *</label>
+    <p><span class="w3-italic w3-bold">All fields with "*" are required.</span></p>		<label for="f_name">First Name *</label>
 		<input type="text" name="f_name" id="f_name" maxlength="30" value="<?php if (isset($_POST['f_name'])) echo htmlspecialchars($_POST['f_name']); ?>" placeholder="First Name *" autofocus required>
 		<span class="error"><?php if (!empty($errors['f_name'])) echo '* ' . htmlspecialchars($errors['f_name']); ?></span><br>
 		<label for="l_name">Last Name *</label>
@@ -13,9 +12,6 @@
 		<span class="error"><?php if (!empty($errors['cust_email'])) echo '* ' . htmlspecialchars($errors['cust_email']); ?></span><br>
 		<label for="cust_phone">Phone Number </label>
 		<input type="tel" name="cust_phone" id="cust_phone" maxlength="10" value="<?php if (isset($_POST['cust_phone'])) echo htmlspecialchars($_POST['cust_phone']); ?>" placeholder="Phone Number"><br>
-		<label for="cust_address">Address </label>
-		<input type="text" name="cust_address" id="cust_address" maxlength="50" value="<?php if (isset($_POST['cust_address'])) echo htmlspecialchars($_POST['cust_address']); ?>" placeholder="Address"><br>
-		<label for="pass1">Password *</label>
 		<input type="password" name="pass1" id="pass1" maxlength="40" value="" placeholder="Password *" required>
 		<span class="error"><?php if (!empty($errors['passworderror1'])) echo '* ' . htmlspecialchars($errors['passworderror1']); ?></span><br>
 		<label for="pass2">Re-type Password *</label>
