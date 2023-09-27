@@ -6,7 +6,7 @@
 
 
  // include the db connection
-  include_once './dbconnect/dbconnect.php';
+  include './dbconnect/dbconnect.php';
 
 
 include('inc/loginpage.php');

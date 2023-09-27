@@ -1,27 +1,18 @@
 <?php
-
-$page_title="added to cart";
-$self=basename($_SERVER['PHP_SELF']);
-include 'inc/header.php';
-include 'inc/footer.php';
-include_once './dbconnect/dbconnect.php';
-
-session_start(); // Start or resume the session
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Check if the "Add to Cart" form was submitted
-
     // Retrieve product information from the form
-    $product_id = $_POST["product_id"];
-    $product_name = $_POST["product_name"];
-    $product_price = $_POST["product_price"];
-    $quantity = $_POST["quantity"];
+    $prod_id = $_POST["product_id"];
+    $prod_name = $_POST["product_name"];
+    $price = $_POST["product_price"];
+    $Quantity = $_POST["quantity"];
 
     // Create an array to store the cart item
     $cart_item = array(
-        "product_id" => $Pro_info,
+        "product_id" => $pro_id,
         "product_name" => $prod_name,
-        "product_price" => $Price,
+        "product_price" => $price,
         "quantity" => $Quantity
     );
 
@@ -31,10 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Check if the product is already in the cart; if so, update the quantity
-    $cart_index = array_search($Pro_info, array_column($_SESSION["cart"], 'product_id'));
+    $cart_index = array_search($prod_id, array_column($_SESSION["cart"], 'product_id'));
 
     if ($cart_index !== false) {
-        $_SESSION["cart"][$cart_index]["Quantity"] += $Quantity;
+        $_SESSION["cart"][$cart_index]["quantity"] += $Quantity;
     } else {
         // Add the item to the cart
         $_SESSION["cart"][] = $cart_item;

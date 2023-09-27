@@ -10,7 +10,7 @@ $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 // Check if the connection was successful
 if (!$dbc) {
-  die('Error connecting to the database: ' . mysqli_connect_error());
+  die('Error: Unable to connect to the database. ' . mysqli_connect_error());
 }
 
 // Set the character set to utf8
