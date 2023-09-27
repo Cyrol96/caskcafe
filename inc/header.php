@@ -35,5 +35,5 @@
 			</div>
 	</header>
 
-	<article id="content">
-		<div class="container">
+	<article id="content" class="mx-auto">
+		<div class="container-fluid ">
