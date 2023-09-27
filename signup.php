@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $existing_email_check = "SELECT email FROM user WHERE email = '$cust_email'";
 //=================end section ==================
             $existing_email_result = mysqli_query($dbc, $existing_email_check);
-            echo $existing_email_check;
+ 
             if (mysqli_num_rows($existing_email_result) > 0) {
                 $errors['cust_email'] = 'This email address is already registered.';
             }
