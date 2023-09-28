@@ -76,8 +76,8 @@ if (!$result) {
         <input type="hidden" name="product_id" value="1">
         <input type="hidden" name="product_name" value="Example Product">
          <input type="hidden" name="product_price" value="19.99">
-         <label for="quantity" class="w3-text-dark-grey"><b>Quantity:</b></label>
-     <input type="number" id="quantity" name="quantity" value="1" min="1" class="w3-input w3-border">
+         <!-- <label for="quantity" class="w3-text-dark-grey"><b>Quantity:</b></label>
+     <input type="number" id="quantity" name="quantity" value="1" min="1" class="w3-input w3-border"> -->
      <button type="submit" class="w3-button w3-block w3-blue w3-section w3-padding">Add to Cart</button>
      </form>
      </div>
@@ -91,4 +91,4 @@ if (!$result) {
             <?php endif; ?>
         </div>
     </div>
-</section>
+</section>S
