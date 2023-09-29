@@ -127,7 +127,7 @@ CREATE TABLE `pro_info` (
   `Price` decimal(10,2) NOT NULL,
   `Quantity` int(11) NOT NULL,
   `prod_img` text NOT NULL,
-  `pro_description` varchar(500) NOT NULL,
+  `prod_disc` varchar(500) NOT NULL,
   `category` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -135,7 +135,7 @@ CREATE TABLE `pro_info` (
 -- Dumping data for table `pro_info`
 --
 
-INSERT INTO `pro_info` (`prod_id`, `prod_name`, `Price`, `Quantity`, `prod_img`, `pro_description`, `category`) VALUES
+INSERT INTO `pro_info` (`prod_id`, `prod_name`, `price`, `Quantity`, `prod_img`, `prod_disc`, `category`) VALUES
 (1, 'Fresh and organic bananas from local farms.', 2.99, 1, './image/parf/bab.jpg', 'Fresh and organic bananas from local farms.', 1),
 (2, 'Grass-fed Ground Beef', 8.99, 1, './image/parf/berry cake.jpg', 'Lean and delicious grass-fed ground beef.', 2),
 (3, 'Wild-caught Alaskan Salmon', 14.99, 3, './image/parf/strawberry Jell-o.jpeg\r\n', 'Sustainably harvested wild-caught Alaskan salmon.', 3),
