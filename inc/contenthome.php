@@ -34,6 +34,7 @@ if (!$result) {
 <!-- some overlay text to describe the video -->
 <div class="content">
     <h2 class="home-intro text-dark">Our Fruit Pairfait</h2>
+
     <h5 class="text-black">We are open for today with a happy cup of parfait from Cask Cafe 🍧🥮 !
         We are open and ready to delight you with our fresh and yummy parfait!
         Please give us a try and you'll keep coming back for more ☺️</h5>
