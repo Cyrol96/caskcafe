@@ -100,6 +100,6 @@ echo '<p class="indent mt-3">
     </div>
 </div>';
 
-#foote
+#footer
 include("./inc/footer.php");
 ?>
