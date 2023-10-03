@@ -22,7 +22,28 @@ if ($_SESSION['cart']) {
             'price' => $row['price']
         );
     }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Check if the user wants to remove an item from the cart
+        if (isset($_POST['remove'])) {
+            $remove_id = $_POST['remove'];
+            if (isset($_SESSION['cart'][$remove_id])) {
+                unset($_SESSION['cart'][$remove_id]);
+            }
+        }
+    
+        // Check if the user wants to update the quantity of an item in the cart
+        if (isset($_POST['update'])) {
+            $update_id = $_POST['update'];
+            $new_quantity = $_POST['new_quantity'];
+            if (isset($_SESSION['cart'][$update_id]) && is_numeric($new_quantity) && $new_quantity > 0) {
+                $_SESSION['cart'][$update_id]['quantity'] = $new_quantity;
+            }
+        }
+    }
+    
 }
+
 
 echo '<div class="container mt-5">';
 if (empty($_SESSION['cart'])) {

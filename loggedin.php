@@ -33,10 +33,6 @@ title='View Cart'></i></a></h1></div>
 <div class='logout'><p><a href='products.php'><button id='updateuser'>
 Let's go shopping</button></a><a href='logout.php' ><button>LOGOUT</button></a></p></div></div>";
 
-// unset($_SESSION['userid']);
-// unset($_SESSION['agent']);
-// $_SESSION=array();
-// session_destroy();
-// setcookie("P")
+// footer
 require('inc/footer.php');  
 ?>
