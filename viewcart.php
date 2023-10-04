@@ -31,7 +31,7 @@ if ($_SESSION['cart']) {
                 unset($_SESSION['cart'][$remove_id]);
             }
         }
-    
+
         // Check if the user wants to update the quantity of an item in the cart
         if (isset($_POST['update'])) {
             $update_id = $_POST['update'];
@@ -41,7 +41,7 @@ if ($_SESSION['cart']) {
             }
         }
     }
-    
+
 }
 
 
