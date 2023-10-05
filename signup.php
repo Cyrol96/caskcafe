@@ -1,7 +1,3 @@
-<!-- Note:
-take out the phone and adress in the sign up 
-and Just one username instead of firstname and last name -->
-
 <?php
 $page_title = 'Cask Cafe | Sign Up';
 include './inc/header.php';
@@ -35,8 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors['cust_email'] = 'Please enter a valid email address.';
         } else {
 //=================fixed ========================
-            // $existing_email_check = "SELECT cust_email FROM customers WHERE cust_email = '$cust_email'";
-            $existing_email_check = "SELECT email FROM user WHERE email = '$cust_email'";
+            $existing_email_check = "SELECT cust_email FROM customers WHERE cust_email = '$cust_email'";
 //=================end section ==================
             $existing_email_result = mysqli_query($dbc, $existing_email_check);
  
@@ -49,8 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $cust_phone = !empty($_POST['cust_phone']) ? trim($_POST['cust_phone']) : '';
-
-    // $cust_address = !empty($_POST['cust_address']) ? trim($_POST['cust_address']) : '';
 
     // Check for a password and match against the confirmed password
     if (!empty($_POST['pass1'])) {
@@ -77,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // If query was successful, redirect to the login page
         if ($r) {
-            echo '<p>Thank you for registering! Please <a href="login.php">log in</a> to continue.</p>';
+            echo '<p>Thank you for registering! Please  <a href="login.php">log in</a> to continue.</p>';
             include('./inc/footer.php');
             exit();
         } else {

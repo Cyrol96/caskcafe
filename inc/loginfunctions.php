@@ -1,57 +1,68 @@
 <?php
-// defines 2 functions used by the login/logout script
+// Start the session
+session_start();
 
-// redirect user function
-function redirect_user($page = "login.php") {
-    // Use this function to redirect the user to the specified page
-    header("Location: $page");
-    exit(); // Make sure to exit the script after the redirect
-}
+// Include the database connection
+require('./dbconnect/dbconnect.php');
 
-// check login
-function check_login($dbc, $email = "", $pass = '')
-{
+// Check if the form has been submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Set up an error array
     $errors = array();
 
-    // validate email
-    if (empty($email)) {
-        $errors[] = 'email'; // The error is added to the array
+    // Check for a valid email address
+    if (!empty($_POST['email'])) {
+        $cust_email = trim($_POST['email']);
     } else {
-        $email = mysqli_real_escape_string($dbc, trim($email));
+        $errors['email'] = 'Please enter your email address.';
     }
 
-    // validate password
-    if (empty($pass)) {
-        $errors[] = 'password';
+    // Check for a password
+    if (!empty($_POST['password'])) {
+        $password = trim($_POST['password']);
     } else {
-        $pass = mysqli_real_escape_string($dbc, trim($pass));
+        $errors['password'] = 'Please enter your password.';
     }
 
+    // If no errors, attempt to log in the user
     if (empty($errors)) {
-        // retrieve the user id
-        $q = "SELECT customers, f_name, l_name FROM customers
-              WHERE email='$email' AND password='" . sha1($pass) . "'";
-        $result = mysqli_query($dbc, $q);
+        // Retrieve user data from the database based on the provided email address
+        $query = "SELECT cust_id, cust_email, hashed_pass FROM customers WHERE cust_email = '$cust_email'";
+        $result = mysqli_query($dbc, $query);
 
         if ($result) {
-            // check the return
+            // Check if a user with the provided email address exists
             if (mysqli_num_rows($result) == 1) {
-                $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                $row = mysqli_fetch_assoc($result);
+                $hashed_pass = $row['hashed_pass'];
 
-                // return true and the record
-                return array(TRUE, $row); // return multiple results in an array form, success
-            } else if (mysqli_num_rows($result) >= 1) {
-                $errors[] = "database error: multiple results for the same email, password pair";
+                // Verify the password
+                if (password_verify($password, $hashed_pass)) {
+                    // Password is correct, so log in the user
+                    $_SESSION['cust_id'] = $row['cust_id'];
+                    $_SESSION['cust_email'] = $row['cust_email'];
+
+                    // Redirect the user to a dashboard or another page
+                    header('Location: dashboard.php');
+                    exit();
+                } else {
+                    // Password is incorrect
+                    $errors['login_error'] = 'Incorrect email or password.';
+                }
             } else {
-                $errors[] = "the information you provided does not match what we have on file";
+                // User does not exist
+                $errors['login_error'] = 'Incorrect email or password.';
             }
         } else {
-            // Handle database query error here
-            $errors[] = "Database query error: " . mysqli_error($dbc);
+            // Database error
+            echo '<h1>System Error</h1><p class="error">Unable to process your request at this time. Please try again later.</p>';
+            echo '<p>' . mysqli_error($dbc) . '<br><br>Query: ' . $query . '</p>';
         }
-    }
 
-    // return false and the errors
-    return array(FALSE, $errors);
+        mysqli_close($dbc);
+    }
 }
+
+// Include the login form
+include('./inc/loginpage.php');
 ?>

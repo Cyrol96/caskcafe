@@ -19,7 +19,8 @@ if ($_SESSION['cart']) {
     while ($row = mysqli_fetch_assoc($result)) {
         $productData[$row['prod_id']] = array(
             'prod_name' => $row['prod_name'],
-            'price' => $row['price']
+            'price' => $row['price'],
+            'prod_img' => $row['prod_img'] // Added product image
         );
     }
 
@@ -41,9 +42,7 @@ if ($_SESSION['cart']) {
             }
         }
     }
-
 }
-
 
 echo '<div class="container mt-5">';
 if (empty($_SESSION['cart'])) {
@@ -57,6 +56,7 @@ if (empty($_SESSION['cart'])) {
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Subtotal</th>
+                    <th>Image</th> <!-- Added Image column -->
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -70,6 +70,7 @@ if (empty($_SESSION['cart'])) {
         $product_name = $productData[$prod_id]['prod_name'];
         $subtotal = $quantity * $price;
         $total += $subtotal;
+        $product_img = $productData[$prod_id]['prod_img']; // Added product image
 
         // Create a form with a table layout for the cart
         echo '<tr>
@@ -87,6 +88,7 @@ if (empty($_SESSION['cart'])) {
                     </form>
                 </td>
                 <td>$' . number_format($subtotal, 2) . '</td>
+                <td><img src="' . $product_img . '" alt="' . $product_name . '" width="100"></td> <!-- Display product image -->
                 <td>
                     <form method="post" action="">
                         <input type="hidden" name="remove" value="' . $prod_id . '">
@@ -103,6 +105,7 @@ if (empty($_SESSION['cart'])) {
             <td></td>
             <td><strong>Total:</strong> $' . number_format($total, 2) . '</td>
             <td></td>
+            <td></td>
         </tr>';
     echo '</tbody></table>';
 
@@ -114,7 +117,7 @@ if (empty($_SESSION['cart'])) {
 
 // Add a button to continue shopping
 echo '<p class="indent mt-3">
-        <a href="previous.html" onClick="history.back();return false;">
+        <a href="index.php" onClick="history.back();return false;">
             <button id="contbutton" class="btn btn-secondary">Continue Shopping</button>
         </a>
       </p>

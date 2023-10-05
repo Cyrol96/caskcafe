@@ -3,7 +3,7 @@
     session_start();
 	// change title and include header
 	$self = basename($_SERVER['PHP_SELF']);
-	$page_title = "Tasty Food | By Sean";
+	$page_title = "Products | By Cask Cafe";
 	include 'inc/header.php';
 	
 	// display page title and shopping cart icon
@@ -16,7 +16,7 @@
 		$prod_id = $_GET['prod_id'];  
 
 	    // connect to the DB with connection file
-		require 'inc/dbconnect.php';
+		require './dbconnect/dbconnect.php';
 
 	    // select everything from prodcuts table for this product ID
 	    $sql = "SELECT * FROM seansfoods_products WHERE prod_id=$prod_id";
