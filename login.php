@@ -1,10 +1,10 @@
 <?php
-
+  // echo("login.php");
   // check if form was submitted with post
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
      // page tittle
- $page_title = "Cask Cafe | Login";  
+  $page_title = "Cask Cafe | Login";  
 
     // require 2 helper files for login and connection to DB
     require ('./inc/loginfunctions.php');
@@ -15,20 +15,14 @@
 
     // check if returned value was TRUE
     if ($check) {
-      // session_start();
+      session_start();
+      
       $_SESSION['userid'] = $data['userid'];
       $_SESSION['firstname'] = $data['firstname'];
       $_SESSION['lastname'] = $data['lastname'];
       $_SESSION['agent'] = sha1($_SERVER['HTTP_USER_AGENT']);
-
-      // set firstname cookie
-      setcookie('firstname', $_SESSION['firstname']);
-
-      // redirect user to loggedin page
-      redirect_user('loggedin.php');
+      echo("Successfully logged in");
     } else {
-      // FALSE was returned
-      // assign data to errors
       $errors = $data;
     }
 

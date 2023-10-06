@@ -25,11 +25,13 @@
 				<li><a href="signup.php">Signup</a></li>
 				<li><a href="login.php">
 						<?php
+						    
 						session_start();
+						var_dump($_SESSION);
 						if (isset($_SESSION['userid']))
-							echo "logout";
+							echo "logout-";
 						else
-							echo 'login';
+							echo 'login-';
 						?>
 						<!-- Login -->
 					</a></li>

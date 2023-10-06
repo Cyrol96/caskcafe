@@ -18,7 +18,7 @@ if(isset($errors) && !empty($errors)){
 ?>
 <div class="indent"><br>
 <h2>Login</h2>
-<form action="./loggedin.php" method="post">
+<form action="./login.php" method="post">
   <div class="container">
     <label for="uname"></label>
     <input type="text" placeholder="Email" name="uname" required>
