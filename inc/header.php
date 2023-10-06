@@ -26,8 +26,11 @@
 				<li><a href="login.php">
 						<?php
 						if (isset($_SESSION['userid']))
+							echo "logout";
+						else
+							echo 'login';
 						?>
-						Login
+						<!-- Login -->
 					</a></li>
 			</ul>
 		</div>

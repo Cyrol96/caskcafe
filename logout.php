@@ -6,7 +6,7 @@
   // if no session variables exist, redirect user
   if (!isset($_SESSION['userid'])) {
     // need functions file
-    include ('inc/loginfunctions.php');
+    require('inc/loginfunctions.php');
     redirect_user();
   }
 
@@ -14,12 +14,12 @@
   unset($_SESSION['userid']);
   unset($_SESSION['agent']);
   session_destroy();
-//   setcookie("PHPSESSID", "", time() - 3600);
-//   setcookie("firstname", "", time() - 3600);
+  setcookie("PHPSESSID", "", time() - 3600);
+  setcookie("firstname", "", time() - 3600);
 
   // change title and include header
   $self = basename($_SERVER['PHP_SELF']);
-  $page_title = 'Logged Out | By Cask cafe';
+  $page_title = 'Logged Out | By Cask Cafe';
   include ('inc/header.php');
 
   // display page
