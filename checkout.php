@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 $page_title = "Checkout";
 $self = basename($_SERVER['PHP_SELF']);
 include 'inc/header.php';

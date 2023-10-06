@@ -1,7 +1,7 @@
 <?php
 
   // user is redirected here from login.php
-  session_start();
+  //session_start();
 
   // if no session variables exist, redirect user
   if (!isset($_SESSION['userid'])) {

@@ -61,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Hash the password
         $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
 
-
         // Make the query
         $q = "INSERT INTO customers (f_name, l_name, cust_email, cust_phone, hashed_pass) VALUES ('$f_name', '$l_name', '$cust_email', '$cust_phone', '$hashed_pass')";
 

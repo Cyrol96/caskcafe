@@ -25,6 +25,7 @@
 				<li><a href="signup.php">Signup</a></li>
 				<li><a href="login.php">
 						<?php
+						session_start();
 						if (isset($_SESSION['userid']))
 							echo "logout";
 						else

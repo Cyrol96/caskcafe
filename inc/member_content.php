@@ -74,26 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$ph = mysqli_real_escape_string($dbc, test_input($_POST['cust_phone']));
 	}
 
-	// check for an address:
-	if (empty($_POST['cust_address'])) {
-		$ad = mysqli_real_escape_string($dbc, test_input('n/a'));
-	} else {
-		$ad = mysqli_real_escape_string($dbc, test_input($_POST['cust_address']));
-	}
-
-
-	// check for a country:
-	if (empty($_POST['cust_country'])) {
-		$co = mysqli_real_escape_string($dbc, test_input('Canada'));
-	} else {
-		$co = mysqli_real_escape_string($dbc, test_input($_POST['cust_country']));
-	}
-
 	// if no errors, which required for esstential input, then insert data into db table
 	if (empty($errors)) {
 
 		// setup the query to register user in the db:
-		$sql = "INSERT INTO user (f_name, l_name, cust_email, cust_phone, cust_address, cust_country, pass) VALUES ('$fn', '$ln', '$e', '$ph', '$ad', '$co', SHA1('$p'))";
+		$sql = "INSERT INTO customer (f_name, l_name, cust_email, cust_phone, pass) VALUES ('$fn', '$ln', '$e', '$ph', SHA1('$p'))";
 
 		// run the query
 		$result = mysqli_query($dbc, $sql);

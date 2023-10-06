@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 $page_title = "View Cart";
 $self = basename($_SERVER['PHP_SELF']);
 include 'inc/header.php';
