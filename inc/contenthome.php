@@ -24,7 +24,7 @@ if (!$result) {
 
 <!-- </article> -->
 <div id="header">
-    <h1>Cask Cafe</h1>
+    <h1 class= "color-red">Cask Cafe</h1>
 </div>
 <!-- The video -->
 <video autoplay muted loop id="myVideo">

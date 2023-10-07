@@ -17,19 +17,15 @@ if(isset($errors) && !empty($errors)){
 //display the login form
 ?>
 <div class="indent"><br>
-<h2>Login</h2>
 <form action="./login.php" method="post">
   <div class="container">
-    <label for="uname"></label>
-    <input type="text" placeholder="Email" name="uname" required>
-
-    <label for="psw"></label>
-    <input type="password" placeholder="Password" name="psw" required>
-        
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
+  <h1>Login</h1>
+  <p>Please fill in the form below:</p>
+  <form name="loginform2" action="login.php" method="post">
+    <input type="text" placeholder="Email" name="email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" required autocomplete="on">
+    <input type="password" placeholder="Password" name="password" required>
+    <input type="submit" name="submit" value="Login">
+	</form>
   </div>
 
   <div class="container" style="background-color:#f1f1f1">

@@ -1,35 +1,35 @@
 <?php
-  // echo("login.php");
-  // check if form was submitted with post
-  if($_SERVER['REQUEST_METHOD'] == 'POST') {
+// Check if the form was submitted with POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Set the page title
+    $page_title = "CaskCafe | Login";
 
-     // page tittle
-  $page_title = "Cask Cafe | Login";  
-
-    // require 2 helper files for login and connection to DB
-    require ('./inc/loginfunctions.php');
+    // Require the helper file for login and the database connection
+    require('./inc/loginfunctions.php');
     include './dbconnect/dbconnect.php';
 
-    // check the login info
+    // Check the login info
     list($check, $data) = check_login($dbc, $_POST['email'], $_POST['password']);
 
-    // check if returned value was TRUE
+    // Check if the returned value was TRUE
     if ($check) {
-      session_start();
-      
-      $_SESSION['userid'] = $data['userid'];
-      $_SESSION['firstname'] = $data['firstname'];
-      $_SESSION['lastname'] = $data['lastname'];
-      $_SESSION['agent'] = sha1($_SERVER['HTTP_USER_AGENT']);
-      echo("Successfully logged in");
+        session_start();
+
+        // Set session variables
+        $_SESSION['userid'] = $data['id'];
+        $_SESSION['firstname'] = $data['f_name'];
+        $_SESSION['lastname'] = $data['l_name'];
+        $_SESSION['agent'] = sha1($_SERVER['HTTP_USER_AGENT']);
+
+        // Redirect to loggedin.php
+        header('loggedin.php');
+        exit();
     } else {
-      $errors = $data;
+        $errors = $data;
     }
 
     mysqli_close($dbc);
-
-  }
-
+}
 
 include('inc/loginpage.php');
 ?>

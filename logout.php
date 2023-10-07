@@ -1,8 +1,4 @@
 <?php
-
-  // user is redirected here from login.php
-  //session_start();
-
   // if no session variables exist, redirect user
   if (!isset($_SESSION['userid'])) {
     // need functions file
@@ -19,7 +15,7 @@
 
   // change title and include header
   $self = basename($_SERVER['PHP_SELF']);
-  $page_title = 'Logged Out | By Cask Cafe';
+  $page_title = 'Logged Out | By CaskCafe';
   include ('inc/header.php');
 
   // display page

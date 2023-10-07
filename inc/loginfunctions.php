@@ -1,52 +1,56 @@
 <?php
+// Define two functions used by the login/logout script
 
-  // defines 2 functions used by the login/logout script
-
-  // redirect user function 
-  function redirect_user($page='login.php') {
+// Redirect user function
+function redirect_user($page = 'login.php') {
     header("Location: $page");
     exit();
-  }
+}
 
-  // check login info which is email and password
-  function check_login($dbc, $email='', $pass='') {
-
+// Check login info which is email and password
+function check_login($dbc, $email = '', $pass = '') {
     $errors = array();
 
-    // validate the email address
+    // Validate the email address
     if (empty($email)) {
-      $errors[] = 'email';
+        $errors[] = 'email';
     } else {
-      $email = mysqli_real_escape_string($dbc, trim($email));
+        $email = mysqli_real_escape_string($dbc, trim($email));
     }
 
-    // validate the password
+    // Validate the password
     if (empty($pass)) {
-      $errors[] = 'password';
+        $errors[] = 'password';
     } else {
-      $pass = mysqli_real_escape_string($dbc, trim($pass));
+        $pass = mysqli_real_escape_string($dbc, trim($pass));
     }
 
-    // if no errors
+    // If no errors
     if (empty($errors)) {
-      // retrieve the userid, firstname and lastname for the given login info
-      $sql = "SELECT id, f_name, l_name FROM customer WHERE cust_email='$email' AND password=SHA1('$pass')";
-      $result = mysqli_query($dbc, $sql);
+        // Retrieve the user's information based on the provided email address and hashed password
+        $sql = "SELECT id, f_name, l_name, hashed_pass FROM customers WHERE cust_email='$email'";
+        $result = mysqli_query($dbc, $sql);
 
-      // check the return
-      if (mysqli_num_rows($result) == 1) {
+        // Check the return
+        if ($result) {
+            // Fetch the record
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-        // fetch the record
-        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-        // return true and the record
-        return array(TRUE, $row);
-      } else {
-        // no match in DB
-        $errors[] = 'The information you provided does not match what we have on file';
-      }
+            // Verify the password
+            if (password_verify($pass, $row['hashed_pass'])) {
+                // Password is correct, so return true and the record
+                return array(TRUE, $row);
+            } else {
+                // Password is incorrect
+                $errors[] = 'The information you provided does not match what we have on file';
+            }
+        } else {
+            // Query execution failed
+            $errors[] = 'Database error: ' . mysqli_error($dbc);
+        }
     }
 
-    // return FALSE and the errors
+    // Return FALSE and the errors
     return array(FALSE, $errors);
-  }
+}
+?>
