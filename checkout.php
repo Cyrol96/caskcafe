@@ -1,5 +1,4 @@
 <?php
-// Session start
 session_start();
 
 // Include required functions
@@ -25,7 +24,7 @@ if (!isset($_SESSION['userid'])) {
 
     // Set user ID and total into variables
     $userid = $_SESSION['userid'];
-    $total = $_SESSION['total'];
+    // $total = $_SESSION['total'];
 
     // Turn off autocommit
     mysqli_autocommit($dbc, FALSE);
