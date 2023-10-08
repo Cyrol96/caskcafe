@@ -132,7 +132,7 @@ if (empty($_SESSION['cart'])) {
                 <td><img src="' . $product_img . '" alt="' . $product_name . '" width="100"></td>
             </tr>';
     }
-
+    
     echo '<tr>
             <td colspan="3"></td>
             <td><strong>Total:</strong> $' . number_format($total, 2) . '</td>
