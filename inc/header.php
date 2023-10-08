@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +42,6 @@ session_start();
     </header>
     <article id="content" class="mx-auto">
         <div class="container-fluid ">
-            <!-- Your content goes here -->
         </div>
     </article>
 </body>
