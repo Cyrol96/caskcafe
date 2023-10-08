@@ -17,11 +17,11 @@ if(isset($errors) && !empty($errors)){
 //display the login form
 ?>
 <div class="indent"><br>
-<form action="./login.php" method="post">
+
   <div class="container">
   <h1>Login</h1>
   <p>Please fill in the form below:</p>
-  <form name="loginform2" action="login.php" method="post">
+  <form name="loginform2" action="./login.php" method="post">
     <input type="text" placeholder="Email" name="email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" required autocomplete="on">
     <input type="password" placeholder="Password" name="password" required>
     <input type="submit" name="submit" value="Login">
@@ -32,7 +32,7 @@ if(isset($errors) && !empty($errors)){
     <span class="psw">Forgot <a href="#">password?</a></span>
   </div>
 
-</form>
+
 
 </div>
 

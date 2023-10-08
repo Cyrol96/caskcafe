@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 ?>
 
@@ -28,8 +30,20 @@ session_start();
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="about.php">About Us</a></li>
                 <li><a href="signup.php">Signup</a></li>
-                <li><a href="login.php">
+                <li><a href=
+                <?php
+                //session_start();
+                if (isset($_SESSION['userid'])) {
+                            echo '"logout.php"';
+                        } 
+                else {
+                            echo '"login.php"';
+                        }
+                
+                ?>>
+         
                         <?php
+                               //var_dump($_SESSION); 
                         if (isset($_SESSION['userid'])) {
                             echo "Logout-" . $_SESSION['firstname'] . " " . $_SESSION['lastname'];
                         } else {

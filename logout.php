@@ -1,18 +1,15 @@
 <?php
-  // if no session variables exist, redirect user
-  if (!isset($_SESSION['userid'])) {
-    // need functions file
-    require('inc/loginfunctions.php');
-    redirect_user();
-  }
-
+  session_start();
+  if (isset($_SESSION['userid'])) {
   // cancel the session
-  unset($_SESSION['userid']);
-  unset($_SESSION['agent']);
-  session_destroy();
-  setcookie("PHPSESSID", "", time() - 3600);
-  setcookie("firstname", "", time() - 3600);
-
+    unset($_SESSION['userid']);
+    unset($_SESSION['agent']);
+    unset($_SESSION['cart']);
+    unset($_SESSION['firstname']);
+    unset($_SESSION['lastname']);
+    session_destroy();
+    //echo "Session has been destroyed";
+  }
   // change title and include header
   $self = basename($_SERVER['PHP_SELF']);
   $page_title = 'Logged Out | By CaskCafe';

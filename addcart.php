@@ -1,6 +1,6 @@
 <?php
     //notice : you don't need to login to add to cart 
-    // session_start();
+
     $page_title="added to cart";
     $self=basename($_SERVER['PHP_SELF']);
     include 'inc/header.php';
