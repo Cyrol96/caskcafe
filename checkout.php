@@ -1,108 +1,160 @@
 <?php
 session_start();
 
-// Include required functions
-require('inc/loginfunctions.php');
-
-// Change title and include header
+$page_title = "Checkout";
 $self = basename($_SERVER['PHP_SELF']);
-$page_title = 'Checkout | By Caskcafe';
-include('inc/header.php');
+include 'inc/header.php';
 
-echo "<div class='w3-container w3-teal'><h1>" . $page_title . "</h1></div>";
-
-// Connect to the database
-require('./dbconnect/dbconnect.php');
-
-// Set total into a variable
-if (isset($_SESSION['total']) && $_SESSION['total'] !== '') {
-    $total = $_SESSION['total'];
-} else {
-    // Handle the case where 'total' is not set or empty
-    echo "Total is not set or empty. Please go back and add items to your cart.";
-    exit; // Exit the script to prevent further execution
+// Check if the user is logged in; if not, redirect to the login page
+if (!isset($_SESSION['userid'])) {
+    header("Location: login.php");
+    exit();
 }
 
-// If the user is logged in, use their user ID; otherwise, use a default value (e.g., 0) to represent a guest user
-$userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 0;
-
-// Turn off autocommit
-mysqli_autocommit($dbc, FALSE);
-
-// Insert the order header into the orders table
-$sql = "INSERT INTO order_info (customer_id, total) VALUES (?, ?)";
+// Fetch user information
+$user_id = $_SESSION['userid'];
+require('./dbconnect/dbconnect.php');
+$sql = "SELECT f_name, l_name, cust_email FROM customers WHERE id = ?";
 $stmt = mysqli_prepare($dbc, $sql);
-mysqli_stmt_bind_param($stmt, 'id', $userid, $total);
+mysqli_stmt_bind_param($stmt, 'i', $user_id);
 mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $first_name, $last_name, $email);
+mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
 
-// Check if the insertion was successful
-if (mysqli_affected_rows($dbc) == 1) {
-    // Retrieve the newly created order ID
-    $orderid = mysqli_insert_id($dbc);
+// Fetch cart items and product information
+$cart_items = $_SESSION['cart'];
+$productData = array();
 
-    // Prepared statement for inserting order items
-    $insert = "INSERT INTO order_info (order_id, product_id, quantity) VALUES (?, ?, ?)";
-    $stmt = mysqli_prepare($dbc, $insert);
-    mysqli_stmt_bind_param($stmt, 'iid', $orderid, $prod_id, $qty);
+if ($cart_items) {
+    $sql = "SELECT prod_id, prod_name, price, prod_img FROM pro_info WHERE prod_id IN (";
 
-    // Run the query loop to insert order items
-    $affected = 0;
-    foreach ($_SESSION['cart'] as $prod_id => $item) {
-        $qty = $item['quantity'];
-        $prod_id = $item['prod_id']; // Assuming you have the product ID in the cart
-        mysqli_stmt_execute($stmt);
-        $affected += mysqli_stmt_affected_rows($stmt);
+    foreach ($cart_items as $prod_id => $value) {
+        $sql .= $prod_id . ',';
     }
 
-    // Close the prepared statement
-    mysqli_stmt_close($stmt);
+    $sql = substr($sql, 0, -1) . ') ORDER BY prod_name ASC';
+    $result = mysqli_query($dbc, $sql);
 
-    // Check if all items were inserted successfully
-    if ($affected == count($_SESSION['cart'])) {
-        // Commit the transaction
-        mysqli_commit($dbc);
-
-        // Unset the cart and total
-        unset($_SESSION['cart']);
-        unset($_SESSION['total']);
-
-        // Get the order timestamp from the orders table (replace with the correct table name)
-        $q = "SELECT order_date FROM order_info WHERE order_id = $orderid LIMIT 1";
-        $r = mysqli_query($dbc, $q);
-
-        if ($r) {
-            $row = mysqli_fetch_assoc($r);
-
-            // Format the date and time
-            $order_date = date("l, F d, Y", strtotime($row['order_date']));
-            $order_time = date("g:i:s A", strtotime($row['order_date']));
-
-            // Display a success message
-            echo "<div class='w3-container w3-camo-sandstone'><h2>Your order has been placed!</h2>";
-            echo "<p class='indent'>Your order number is <span class='w3-camo-red'><i>" . date("Y") . "-$orderid</i></span> placed at $order_time on $order_date. The total of your order was <span class='w3-camo-red'><i>$" . number_format($total, 2) . "</i></span>. Thank you for your purchase!</p></div><img src='./img/site/success.jpg' id='successimg'>";
-        } else {
-            // Error handling for timestamp retrieval
-            echo "<div class='w3-container w3-red'><p class='indent'>Error retrieving order timestamp.</p></div>";
-        }
-    } else {
-        // Rollback the transaction if order items were not inserted successfully
-        mysqli_rollback($dbc);
-
-        // Error message
-        echo "<div class='w3-container w3-red'><p class='indent'>There was a problem completing your order. Please contact customer support for assistance. No payment has been charged at this point.</p></div>";
+    // Store product information in the $productData array
+    while ($row = mysqli_fetch_assoc($result)) {
+        $productData[$row['prod_id']] = $row;
     }
-} else {
-    // Rollback the transaction if the order header was not inserted successfully
-    mysqli_rollback($dbc);
-
-    // Error message
-    echo "<div class='w3-container w3-red'><p class='indent'>There was a problem completing your order. Please contact customer support for assistance. No payment has been charged at this point.</p></div>";
 }
 
-// Close the database connection
-mysqli_close($dbc);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
+    // Perform checkout and insert order information into the database
+    $total = 0;
+    $order_date = date('Y-m-d H:i:s');
 
-// Include footer
-include('inc/footer.php');
+    // Start a database transaction
+    mysqli_autocommit($dbc, FALSE);
+    $transaction_error = false;
+
+    // Insert order header
+    $insert_order_sql = "INSERT INTO order_info (prod_id, order_date) VALUES (?, ?)";
+    $insert_order_stmt = mysqli_prepare($dbc, $insert_order_sql);
+    mysqli_stmt_bind_param($insert_order_stmt, 'is', $user_id, $order_date);
+
+    if (!mysqli_stmt_execute($insert_order_stmt)) {
+        $transaction_error = true;
+    } else {
+        $order_id = mysqli_insert_id($dbc);
+
+        // Insert order items
+        $insert_item_sql = "INSERT INTO order_info (prod_id, order_date, quantity, total) VALUES (?, ?, ?, ?)";
+        $insert_item_stmt = mysqli_prepare($dbc, $insert_item_sql);
+
+        foreach ($cart_items as $prod_id => $item) {
+            $quantity = $item['quantity'];
+            $price = $productData[$prod_id]['price'];
+            $subtotal = $quantity * $price;
+            $total += $subtotal;
+
+            mysqli_stmt_bind_param($insert_item_stmt, 'iiid', $order_id, $prod_id, $quantity, $subtotal);
+
+            if (!mysqli_stmt_execute($insert_item_stmt)) {
+                $transaction_error = true;
+                break;
+            }
+        }
+    }
+
+    // Commit or rollback the transaction based on success
+    if ($transaction_error) {
+        mysqli_rollback($dbc);
+        echo '<div class="alert alert-danger"><strong>Error:</strong> There was a problem completing your order. Please try again later.</div>';
+    } else {
+        mysqli_commit($dbc);
+        unset($_SESSION['cart']);
+        echo '<div class="alert alert-success"><strong>Success:</strong> Your order has been placed successfully. Thank you for your purchase!</div>';
+    }
+
+    // Close prepared statements
+    mysqli_stmt_close($insert_order_stmt);
+    mysqli_stmt_close($insert_item_stmt);
+}
+
+// Display checkout form and cart items
+echo '<div class="container mt-5">';
+if (empty($_SESSION['cart'])) {
+    // Display a message if the cart is empty
+    echo '<div class="alert alert-info"><h2>Your Cart is Empty</h2></div>';
+} else {
+    echo '<h2>Checkout</h2>';
+    echo '<p>Review your order details and complete the checkout process:</p>';
+
+    echo '<table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>total</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>';
+
+    foreach ($cart_items as $prod_id => $item) {
+        $quantity = $item['quantity'];
+        $price = $productData[$prod_id]['price'];
+        $product_name = $productData[$prod_id]['prod_name'];
+        $subtotal = $quantity * $price;
+        $total += $subtotal;
+        $product_img = $productData[$prod_id]['prod_img'];
+
+        echo '<tr>
+                <td>' . $product_name . '</td>
+                <td>$' . number_format($price, 2) . '</td>
+                <td>' . $quantity . '</td>
+                <td>$' . number_format($subtotal, 2) . '</td>
+                <td><img src="' . $product_img . '" alt="' . $product_name . '" width="100"></td>
+            </tr>';
+    }
+
+    echo '<tr>
+            <td colspan="3"></td>
+            <td><strong>Total:</strong> $' . number_format($total, 2) . '</td>
+            <td></td>
+        </tr>';
+    echo '</tbody></table>';
+
+    // Checkout form
+    echo '<form method="post" action="">
+            <button type="submit" class="btn btn-primary" name="checkout">Complete Checkout</button>
+          </form>';
+}
+
+// Add a button to continue shopping
+echo '<p class="indent mt-3">
+        <a href="index.php" onClick="history.back();return false;">
+            <button id="contbutton" class="btn btn-secondary">Continue Shopping</button>
+        </a>
+      </p>
+    </div>
+</div>';
+
+#footer
+include("./inc/footer.php");
 ?>
