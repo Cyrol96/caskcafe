@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2023 at 03:44 PM
+-- Generation Time: Oct 09, 2023 at 10:01 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,10 +44,13 @@ INSERT INTO `contact_commenet` (`id`, `f_name`, `l_name`, `Email`, `Comment`) VA
 (3, 'inemesit', 'happiness', 'inemesitusen6@gmail.com', 'I love your product and i will like to get more of it probably next time'),
 (4, 'cyrol', 'tester', 'mariobabyt@gmail.com', 'inesssrxfgdhmfmhc,jhyjfyjdthd,'),
 (5, 'Mario', 'laver', 'Lawal.djamal68@yahoo.com', 'booomboomm  fhkhjdfbdf'),
-(6, 'Lawal', 'Hongxin', 'Lawal.djamal68@yahoo.com', 'oy eyshhsjd bddhhhk'),
-(7, 'Lawal', 'Hongxin', 'Lawal.djamal68@yahoo.com', 'oy eyshhsjd bddhhhk'),
-(8, 'Oliver', 'owen', 'Lawal.djamal68@yahoo.com', 'hello my man '),
-(9, 'Mario', 'happiness', 'inemesitusen6@gmail.com', 'Mohbad is dead and there is alot of protest concerning his death');
+(9, 'Mario', 'happiness', 'inemesitusen6@gmail.com', 'Mohbad is dead and there is alot of protest concerning his death'),
+(10, 'Tiamiyu', 'Aisha', 'tiamiyuaisha@gmail.com', 'I love your product so much'),
+(11, 'Tiamiyu', 'Aisha', 'tiamiyuaisha@gmail.com', 'I love your product so much'),
+(12, 'aishah', 'tiamiyu', 'aishahtiamiyu@gmail.com', 'fgghghhhjjh'),
+(15, 'cyrol', 'tester', 'inemesitusen6@gmail.com', '122323232'),
+(16, 'Mirror', 'owen', 'inemesitusen6@gmail.com', 'scanning'),
+(17, 'Oliver', 'Hongxin2023', 'abdulazeezj@assiniboine.net', '1234');
 
 -- --------------------------------------------------------
 
@@ -61,7 +64,6 @@ CREATE TABLE `customers` (
   `l_name` varchar(50) NOT NULL,
   `cust_email` varchar(100) NOT NULL,
   `cust_phone` varchar(20) NOT NULL,
-  `cust_address` varchar(200) NOT NULL,
   `hashed_pass` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -69,51 +71,49 @@ CREATE TABLE `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `f_name`, `l_name`, `cust_email`, `cust_phone`, `cust_address`, `hashed_pass`) VALUES
-(1, 'Malay', 'lawal', 'Lawal.djamal68@yahoo.com', '4315413326', '2005 stracy steet apt 13', '$2y$10$aIJhp2RBCGO9KvSIKKorRex0KmWP8WtRpsyR3MR44EadvjCS7S/aO'),
-(2, 'Malay', 'Naira', 'abibatasabi5@gmail.com', '234809641', '202 richmond, Brandon, MB', '$2y$10$m5VlXaq3E726kZ7zZdpMueclZJnBTtdE0ZsWfhdpASrVqFTEAo6oK'),
-(3, 'Malay', 'lawal', 'Lawal.djamal68@yahoo.com', '4315413326', '2005 stracy steet apt 13', '$2y$10$sBjhU5ctYGeizqGVaoyB6uoEqmp6gMA/3aba./QDMQTApeBeUig7O'),
-(4, 'zeno', 'zee', 'Lawal.djamal68@yahoo.com', '4315413326', '2005 stracy steet apt 13', '$2y$10$PPCv72rj7dAy89IDJ6fY0.kLwoTZaoTVB3oD57ANzh5Mmo8lO6Lfu'),
-(5, 'j', 'g', 'jg@jg.com', '204', '123 123 street', '$2y$10$lnzL03jCMESGKvUweWX22.naQJTqjSXPTX06fY/S5I4j2q4yRQKqu'),
-(6, 'yuu', 'dhdhh', 'd@dhdg.com', '', '', '$2y$10$f7eNjxf03jXxLTux68khkOAnYEWrUgdEP697PkNpSHu4QJXp7y8/a'),
-(7, 'Malay', 'lawal', 'Lawal.djamal68@yahoo.com', '4315413326', '2005 stracy steet apt 13', '$2y$10$X0HvunOD1C3WJLmutYpdH.wODyS1GAO3Sl/k1o3do5p30awQIMbg2'),
-(8, 'Testy', 'Tester', 'testy@tester.ca', '2047258700', '1430 Victoria Avenue East', '$2y$10$cSXRUMgucG5w2yPQasXSCuzqtIr0e.skQMAuSe8BKhCNpI6zrKoju'),
-(9, 'tundex', 'rahman', 'lawal.djamal68@yahoo.com', '4315413325', '', '$2y$10$8vbI/2uKe9MPg2X9UtGLdurzOkRbY/vzXLj6cdD8PzCJxv1adU18m'),
-(10, 'Oliver', 'rahman', 'lawal.djamal68@yahoo.com', '4315413325', 'tundex', '$2y$10$6PnGgBdbMTKoowD/K8iX1u/G1C2sOOZgFBUqoA6W3EaSjF.wytgyG'),
-(11, 'tundex', 'rahman', 'lawal.djamal68@yahoo.com', '4315413325', '', '$2y$10$G.8wLSEsi0zE.t5g15655uh1zQfv4ZCZY0QeHArPVhhLL5X.2Ld16'),
-(12, 'Henry', 'tien', 'coco01@gmail.com', '00000000', '', '$2y$10$BqsbvJqSZJFBmUvRB43q.uI0zjJaQTmY1ymzUlOvAHqK3bPtYahsy'),
-(13, 'Sumonu', 'idriss owasina', 'sumonuidriss@hotmail.com', '00000022', '', '$2y$10$Ahjvv1GFuxY0..fDaJSP4.junBrBl5BbCTWK3h0N/Md.D/CNEHKV2'),
-(15, 'tundex', 'rahman', 'lawal.djamal68@yahoo.com', '4315413325', '', '$2y$10$45tRsf7Q9EuwkMuTOB5DXeC03Hs8GmBIbWzrSLXnUuqZ.0.B9NY1O');
+INSERT INTO `customers` (`id`, `f_name`, `l_name`, `cust_email`, `cust_phone`, `hashed_pass`) VALUES
+(13, 'Sumonu', 'idriss owasina', 'sumonuidriss@hotmail.com', '00000022', '$2y$10$Ahjvv1GFuxY0..fDaJSP4.junBrBl5BbCTWK3h0N/Md.D/CNEHKV2'),
+(24, 'Tusix', 'Tusix1', 'testytester@me.net', '4122142212', '$2y$10$GPap/pbANOoys9bjObvVjO7KQJYi0P7v7TS8J42kotRlDo01DIxau'),
+(26, 'Mohbad', 'ileri', 'ilerioluwa@yahoo.com', '7654321123', '$2y$10$oI7Cm9PtL43o9nCwh78vIejOSbJ6pxW1DO.Ls4Z20GED8SISerdDG'),
+(37, 'Jessy', 'Testy', 'testyjessy@gmail.com', '4315413325', '$2y$10$3f6hSdKpAP/9LJkJ9ENbm.5qNnuW1tTaqWl4yGoD5./8KyP3iUwd.'),
+(38, 'Jamal', 'Testy', 'lawal.djamal68@yahoo.com', '4315413325', '$2y$10$Vud2dq7OEO5a3p7UEwzQyuan/XYO3KSX7zqK.tno.yBoAefEfH/vS'),
+(39, 'Testy', 'tester', 'testy@yahoo.com', '4315413325', '$2y$10$VFWu2FNfruPsqRnxBIfjSeg2s73bZtVB94CHX8BLQlFkNixd22rAq'),
+(40, 'Mary', 'rahman', 'marry@yahoo.com', '4122142212', '$2y$10$FUorRfxZzjRQQDTNJ3E6F.DgfAG9/LN5naQMi2JV7RhFklXKbbMje'),
+(41, 'Lawal', 'Jamaldeen', 'lawal.djamal@yahoo.com', '5413215512', '$2y$10$B3DWSqX9QF7CNcwMRCEqmOcVf86hwTaPLBXvds.C2z5Zuv.6hBxou');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_info`
+-- Table structure for table `order_item`
 --
 
-CREATE TABLE `order_info` (
-  `OrderID` int(11) NOT NULL,
-  `CustomerID` int(11) NOT NULL,
-  `OrderDate` datetime NOT NULL,
-  `Quantity` int(11) NOT NULL,
-  `Total` decimal(10,2) NOT NULL
+CREATE TABLE `order_item` (
+  `item_id` int(11) NOT NULL,
+  `prod_id` int(11) NOT NULL,
+  `order_date` datetime DEFAULT current_timestamp(),
+  `quantity` int(11) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `ordernum` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `order_info`
+-- Dumping data for table `order_item`
 --
 
-INSERT INTO `order_info` (`OrderID`, `CustomerID`, `OrderDate`, `Quantity`, `Total`) VALUES
-(5, 227383, '2023-04-03 21:49:54', 5, 45.03),
-(6, 227384, '2023-04-03 21:49:54', 6, 62.01),
-(7, 227385, '2023-04-03 21:51:35', 10, 105.00),
-(8, 227395, '2023-04-03 21:51:35', 3, 40.50),
-(9, 227396, '2023-04-03 21:51:35', 2, 25.60),
-(10, 227397, '2023-04-03 21:53:51', 2, 14.00),
-(11, 227398, '2023-04-03 21:53:51', 3, 55.00),
-(12, 227399, '2023-04-03 21:55:17', 12, 40.50),
-(13, 227400, '2023-04-03 21:55:17', 70, 40.00),
-(14, 227401, '2023-04-03 22:00:11', 4, 18.20);
+INSERT INTO `order_item` (`item_id`, `prod_id`, `order_date`, `quantity`, `total`, `ordernum`) VALUES
+(116, 2, '2023-10-09 18:19:11', 0, 0.00, 0),
+(117, 2, '2023-10-09 10:19:11', 2, 17.98, 0),
+(123, 2, '2023-10-09 18:38:06', 0, 0.00, 0),
+(124, 2, '2023-10-09 10:38:06', 1, 8.99, 0),
+(126, 3, '2023-10-09 10:51:20', 1, 14.99, 0),
+(127, 3, '2023-10-09 10:51:52', 1, 14.99, 0),
+(128, 3, '2023-10-09 10:54:59', 6, 89.94, 1),
+(129, 5, '2023-10-09 10:57:04', 1, 7.99, 2),
+(130, 8, '2023-10-09 10:57:04', 1, 8.99, 2),
+(131, 3, '2023-10-09 10:57:04', 1, 14.99, 2),
+(132, 3, '2023-10-09 10:57:24', 3, 44.97, 3),
+(133, 8, '2023-10-09 13:58:41', 2, 17.98, 4),
+(134, 9, '2023-10-09 13:58:41', 4, 24.00, 4);
 
 -- --------------------------------------------------------
 
@@ -124,7 +124,7 @@ INSERT INTO `order_info` (`OrderID`, `CustomerID`, `OrderDate`, `Quantity`, `Tot
 CREATE TABLE `pro_info` (
   `prod_id` int(11) NOT NULL,
   `prod_name` varchar(225) NOT NULL,
-  `Price` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `Quantity` int(11) NOT NULL,
   `prod_img` text NOT NULL,
   `prod_disc` varchar(500) NOT NULL,
@@ -149,17 +149,6 @@ INSERT INTO `pro_info` (`prod_id`, `prod_name`, `price`, `Quantity`, `prod_img`,
 (11, 'pineapple ingredient Smoothie ', 8.90, 3, './image/parf/Smoothie_4.jpg', 'Pineapple Cold glass Smoothie', 12),
 (12, 'Plate Cake', 13.00, 2, './image/parf/plate Cake.jpg', 'Plate sweetie Cake', 6);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `email` varchar(50) DEFAULT NULL,
-  `pass` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Indexes for dumped tables
 --
@@ -177,11 +166,11 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `order_info`
+-- Indexes for table `order_item`
 --
-ALTER TABLE `order_info`
-  ADD PRIMARY KEY (`OrderID`),
-  ADD KEY `CustomerID` (`CustomerID`);
+ALTER TABLE `order_item`
+  ADD PRIMARY KEY (`item_id`),
+  ADD KEY `CustomerID` (`prod_id`);
 
 --
 -- Indexes for table `pro_info`
@@ -197,25 +186,35 @@ ALTER TABLE `pro_info`
 -- AUTO_INCREMENT for table `contact_commenet`
 --
 ALTER TABLE `contact_commenet`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT for table `order_info`
+-- AUTO_INCREMENT for table `order_item`
 --
-ALTER TABLE `order_info`
-  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+ALTER TABLE `order_item`
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT for table `pro_info`
 --
 ALTER TABLE `pro_info`
   MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `order_item`
+--
+ALTER TABLE `order_item`
+  ADD CONSTRAINT `order_item_ibfk_1` FOREIGN KEY (`prod_id`) REFERENCES `pro_info` (`prod_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
