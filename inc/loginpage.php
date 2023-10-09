@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $self=basename(($_SERVER['PHP_SELF']));
 $page_title="Log in | by User";
 include("header.php");

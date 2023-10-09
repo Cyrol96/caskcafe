@@ -1,6 +1,4 @@
 <?php
-
-
 $page_title = "Checkout";
 $self = basename($_SERVER['PHP_SELF']);
 include 'inc/header.php';
@@ -26,6 +24,9 @@ mysqli_stmt_close($stmt);
 $cart_items = $_SESSION['cart'];
 $productData = array();
 
+// Initialize $total to 0
+$total = 0;
+
 if ($cart_items) {
     $sql = "SELECT prod_id, prod_name, price, prod_img FROM pro_info WHERE prod_id IN (";
 
@@ -44,7 +45,6 @@ if ($cart_items) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
     // Perform checkout and insert order information into the database
-    $total = 0;
     $order_date = date('Y-m-d H:i:s');
 
     // Start a database transaction
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
             $quantity = $item['quantity'];
             $price = $productData[$prod_id]['price'];
             $subtotal = $quantity * $price;
-            $total += $subtotal;
+            $total += $subtotal; 
 
             mysqli_stmt_bind_param($insert_item_stmt, 'iiid', $order_id, $prod_id, $quantity, $subtotal);
 
@@ -110,7 +110,7 @@ if (empty($_SESSION['cart'])) {
                     <th>Product</th>
                     <th>Price</th>
                     <th>Quantity</th>
-                    <th>total</th>
+                    <th>Total</th>
                     <th>Image</th>
                 </tr>
             </thead>
@@ -120,6 +120,7 @@ if (empty($_SESSION['cart'])) {
         $quantity = $item['quantity'];
         $price = $productData[$prod_id]['price'];
         $product_name = $productData[$prod_id]['prod_name'];
+        $subtotal = 0;
         $subtotal = $quantity * $price;
         $total += $subtotal;
         $product_img = $productData[$prod_id]['prod_img'];
