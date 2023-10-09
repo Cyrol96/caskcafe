@@ -25,7 +25,6 @@ if (!isset($_SESSION['cart'])) {
     // Handle the case where the cart is not set (e.g., redirect to the cart page or display an error message).
     echo '<div class="alert alert-warning"><strong>Warning:</strong> Your shopping cart is empty.</div>';
 } else {
-    // 'cart' is set in the session, proceed with the rest of your code
 
     // Fetch cart items and product information
     $cart_items = $_SESSION['cart'];
@@ -59,15 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
     mysqli_autocommit($dbc, FALSE);
     $transaction_error = false;
 
-    //Insert order header
-    // $insert_order_sql = "INSERT INTO order_item (order_date) VALUES ( ?)";
-    // $insert_order_stmt = mysqli_prepare($dbc, $insert_order_sql);
-    // mysqli_stmt_bind_param($insert_order_stmt, 's', $order_date);
-
-    // if (!mysqli_stmt_execute($insert_order_stmt)) {
-    //     $transaction_error = true;
-    // } else {
-    //     $order_id = mysqli_insert_id($dbc);
 
         // Insert order items
     $insert_item_sql = "INSERT INTO order_item (prod_id, quantity, total,ordernum) VALUES (?, ?, ? , ?)";
@@ -75,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
 
     $max_order_num_sql="SELECT MAX(ordernum) AS max_ordernum FROM order_item;";
     $max_order_num_stmt = mysqli_prepare($dbc, $max_order_num_sql);
-    // mysqli_stmt_bind_param($max_order_num_stmt, 'i',$max_order_num);
     mysqli_stmt_execute($max_order_num_stmt);
     mysqli_stmt_bind_result($max_order_num_stmt, $max_ordernum);
     mysqli_stmt_fetch($max_order_num_stmt);
@@ -108,7 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
     }
 
     // Close prepared statements
-    //mysqli_stmt_close($insert_order_stmt);
     mysqli_stmt_close($insert_item_stmt);
 }
 
