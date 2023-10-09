@@ -2,6 +2,8 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+// Turn off error display
+ini_set('display_errors', 0);
 
 ?>
 

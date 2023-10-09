@@ -122,7 +122,7 @@ if (empty($_SESSION['cart'])) {
 
 // Add a button to continue shopping
 echo '<p class="indent mt-3">
-        <a href="index.php" onClick="history.back();return false;">
+        <a href="index.php" >
             <button id="contbutton" class="btn btn-secondary">Continue Shopping</button>
         </a>
       </p>
