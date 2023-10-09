@@ -58,6 +58,4 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="container-fluid ">
         </div>
     </article>
-</body>
 
-</html>

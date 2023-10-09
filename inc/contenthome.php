@@ -26,6 +26,7 @@ if (!$result) {
 <div id="header">
 <h1 class="color" style="color: red;">Cask Cafe</h1></div>
 <!-- The video -->
+
 <video autoplay muted loop id="myVideo">
     <source src="video\parfait_video.mp4" type="video/mp4">
 </video>
@@ -36,8 +37,6 @@ if (!$result) {
     <h5 class="text-black">We are open for today with a happy cup of parfait from Cask Cafe 🍧🥮 !
         We are open and ready to delight you with our fresh and yummy parfait!
         Please give us a try and you'll keep coming back for more ☺️</h5>
-    <!-- Use a button to pause/play the video with JavaScript -->
-    <!-- <button id="myBtn" onclick="myFunction()">Pause</button> -->
 </div>
 
 <!-- Add drop-down list for filtering by category -->

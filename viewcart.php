@@ -4,9 +4,14 @@ $page_title = "View Cart";
 $self = basename($_SERVER['PHP_SELF']);
 include 'inc/header.php';
 
+// Initialize the $_SESSION['cart'] array if it's not already set
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
+
 // Fetch all necessary product information from the database for the cart items
 $productData = array(); // An array to store product information
-if ($_SESSION['cart']) {
+if (!empty($_SESSION['cart'])) {
     require('./dbconnect/dbconnect.php');
     $sql = "SELECT prod_id, prod_name, price, prod_img FROM pro_info WHERE prod_id IN (";
     foreach ($_SESSION['cart'] as $prod_id => $value) {

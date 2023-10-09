@@ -20,26 +20,34 @@ mysqli_stmt_bind_result($stmt, $first_name, $last_name, $email);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
 
-// Fetch cart items and product information
-$cart_items = $_SESSION['cart'];
-$productData = array();
+// Check if 'cart' is set in the session before using it
+if (!isset($_SESSION['cart'])) {
+    // Handle the case where the cart is not set (e.g., redirect to the cart page or display an error message).
+    echo '<div class="alert alert-warning"><strong>Warning:</strong> Your shopping cart is empty.</div>';
+} else {
+    // 'cart' is set in the session, proceed with the rest of your code
 
-// Initialize $total to 0
-$total = 0;
+    // Fetch cart items and product information
+    $cart_items = $_SESSION['cart'];
+    $productData = array();
 
-if ($cart_items) {
-    $sql = "SELECT prod_id, prod_name, price, prod_img FROM pro_info WHERE prod_id IN (";
+    // Initialize $total to 0
+    $total = 0;
 
-    foreach ($cart_items as $prod_id => $value) {
-        $sql .= $prod_id . ',';
-    }
+    if ($cart_items) {
+        $sql = "SELECT prod_id, prod_name, price, prod_img FROM pro_info WHERE prod_id IN (";
 
-    $sql = substr($sql, 0, -1) . ') ORDER BY prod_name ASC';
-    $result = mysqli_query($dbc, $sql);
+        foreach ($cart_items as $prod_id => $value) {
+            $sql .= $prod_id . ',';
+        }
 
-    // Store product information in the $productData array
-    while ($row = mysqli_fetch_assoc($result)) {
-        $productData[$row['prod_id']] = $row;
+        $sql = substr($sql, 0, -1) . ') ORDER BY prod_name ASC';
+        $result = mysqli_query($dbc, $sql);
+
+        // Store product information in the $productData array
+        while ($row = mysqli_fetch_assoc($result)) {
+            $productData[$row['prod_id']] = $row;
+        }
     }
 }
 
