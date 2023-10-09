@@ -12,8 +12,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
         $comment = ($_POST['comment']);
         $fullName = $firstName . " " . $lastName;
-        //display form here should be ture, according to the instruction
-        //$displayForm = FALSE;
+
         // turn flag off to not display the form again
         //to save to a file
         $timeStamp = time();

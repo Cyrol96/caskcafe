@@ -6,10 +6,6 @@ include('./inc/loginfunctions.php');
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-// Check for login
-// if (!isset($_SESSION['userid']) && !isset($_SESSION['agent'])) {
-//     redirect_user('login.php');
-// }
 
 // Change title and include header
 $self = basename($_SERVER['PHP_SELF']);
