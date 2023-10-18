@@ -7,7 +7,7 @@ if (isset($_GET['category'])) {
 }
 
 // Define the SQL query
-$sql = "SELECT * FROM Pro_info ";
+$sql = "SELECT * FROM pro_info ";
 
 // Add filter for category if specified
 if (!empty($category)) {
