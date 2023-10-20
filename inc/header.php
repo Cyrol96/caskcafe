@@ -4,15 +4,12 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 // Turn off error display
 ini_set('display_errors', 0);
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <?= $page_title ?>
@@ -34,25 +31,20 @@ ini_set('display_errors', 0);
                 <li><a href="signup.php">Signup</a></li>
                 <li><a href=
                 <?php
-                //session_start();
                 if (isset($_SESSION['userid'])) {
-                            echo '"logout.php"';
-                        } 
-                else {
-                            echo '"login.php"';
-                        }
-                
+                    echo '"logout.php"';
+                } else {
+                    echo '"login.php"';
+                }
                 ?>>
-         
-                        <?php
-                               //var_dump($_SESSION); 
-                        if (isset($_SESSION['userid'])) {
-                            echo "Logout-" . $_SESSION['firstname'] . " " . $_SESSION['lastname'];
-                        } else {
-                            echo 'Login';
-                        }
-                        ?>
-                    </a></li>
+                    <?php
+                    if (isset($_SESSION['userid'])) {
+                        echo "Logout-" . $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+                    } else {
+                        echo 'Login';
+                    }
+                    ?>
+                </a></li>
             </ul>
         </div>
     </header>
@@ -60,4 +52,5 @@ ini_set('display_errors', 0);
         <div class="container-fluid ">
         </div>
     </article>
-
+</body>
+</html>

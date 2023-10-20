@@ -1,9 +1,9 @@
 <?php
- 
+// Start the session at the beginning of your script
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if the form was submitted with POST
-    echo ("test");
 
     // Set the page title
     $page_title = "CaskCafe | Login";
@@ -17,9 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Check if the returned value was TRUE
     if ($check) {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
         // Set session variables
         $_SESSION['userid'] = $data['id'];
         $_SESSION['firstname'] = $data['f_name'];
@@ -28,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Redirect to loggedin.php
         redirect_user('loggedin.php');
-        //exit();
     } else {
         $errors = $data;
         print_r($errors);

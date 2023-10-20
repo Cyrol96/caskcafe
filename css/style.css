@@ -383,3 +383,83 @@ button:hover {
 	background: #ddd;
 	color: black;
   }
+
+  /* Existing CSS code */
+
+/* For screens smaller than 768px (typical for mobile devices) */
+@media (max-width: 768px) {
+    /* Modify header styles */
+    #header {
+        width: 100%;
+    }
+
+    #header h1 {
+        font-size: 200%;
+        margin-bottom: -10px;
+    }
+
+    #header h2 {
+        font-size: 150%;
+        text-align: center;
+    }
+
+    /* Modify gallery styles */
+    .gallery {
+        width: 50%;
+    }
+
+    .desc {
+        font-size: 14px;
+    }
+
+    /* Modify navigation styles */
+    #navigation {
+        width: 100%;
+    }
+
+    #navigation li {
+        width: 25%;
+    }
+
+    h4 {
+        display: none;
+    }
+
+    /* Modify content styles */
+    #content {
+        width: 100%;
+    }
+
+    #content h1 {
+        font-size: 250%;
+        margin-top: 0;
+    }
+
+    #content h2 {
+        font-size: 180%;
+    }
+
+    #content h3 {
+        font-size: 16px;
+    }
+
+    #admin {
+        text-align: center;
+    }
+
+    /* Sign up form styles */
+    input[type=text], input[type=password], input[type=tel], input[type=email] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0 22px 0;
+    }
+
+    /* Modify cancel and signup buttons for mobile */
+    .cancelbtn, .signupbtn {
+        width: 100%;
+    }
+    
+    .psw {
+        color: #f44336;
+    }
+}
