@@ -21,6 +21,8 @@ ini_set('display_errors', 0);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/w3-css/4.1.0/w3.min.css">
+    <link rel="shortcut icon" href="./image/favicon/apple-touch-icon.png" type="image/jpeg">    
+
 </head>
 
 <body>
@@ -58,8 +60,4 @@ ini_set('display_errors', 0);
     </nav>
 </header>
 
-    <article id="content" class="mx-auto">
-        <div class="container-fluid ">
-        </div>
-    </article>
 

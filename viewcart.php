@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $page_title = "View Cart";
 $self = basename($_SERVER['PHP_SELF']);
 include 'inc/header.php';
@@ -49,6 +49,7 @@ if (!empty($_SESSION['cart'])) {
     }
 }
 
+// Display the cart content
 echo '<div class="container mt-5">';
 if (empty($_SESSION['cart'])) {
     // Display a message if the cart is empty
@@ -129,6 +130,6 @@ echo '<p class="indent mt-3">
     </div>
 </div>';
 
-#footer
+// Include footer
 include("./inc/footer.php");
 ?>

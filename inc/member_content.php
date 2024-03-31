@@ -1,4 +1,6 @@
 <?php
+// Start the session
+session_start();
 
 // set page reference:
 $self = basename($_SERVER['PHP_SELF']);
