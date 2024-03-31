@@ -27,22 +27,27 @@ function check_login($dbc, $email = '', $pass = '') {
 
     // If no errors
     if (empty($errors)) {
-        // Retrieve the user's information based on the provided email address and hashed password
+        // Retrieve the user's information based on the provided email address
         $sql = "SELECT id, f_name, l_name, hashed_pass FROM customers WHERE cust_email='$email'";
         $result = mysqli_query($dbc, $sql);
 
-        // Check the return
+        // Check if the query was successful
         if ($result) {
             // Fetch the record
-            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-            // Verify the password
-            if (password_verify($pass, $row['hashed_pass'])) {
-                // Password is correct, so return true and the record
-                return array(TRUE, $row);
+            $row = mysqli_fetch_assoc($result);
+            
+            if ($row) {
+                // Verify the password
+                if (password_verify($pass, $row['hashed_pass'])) {
+                    // Password is correct, so return true and the record
+                    return array(TRUE, $row);
+                } else {
+                    // Password is incorrect
+                    $errors[] = 'The information you provided does not match what we have on file';
+                }
             } else {
-                // Password is incorrect
-                $errors[] = 'The information you provided does not match what we have on file';
+                // User not found
+                $errors[] = 'User not found';
             }
         } else {
             // Query execution failed
@@ -53,4 +58,3 @@ function check_login($dbc, $email = '', $pass = '') {
     // Return FALSE and the errors
     return array(FALSE, $errors);
 }
-?>
