@@ -39,8 +39,8 @@ if (!$result) {
     <label for="category">Filter by category:</label>
     <select name="category" id="category">
         <option value="">All</option>
-        <option value="fruits">Fruits Pairfait</option>
-        <option value="Smoothie">Smoothie</option>
+        <option value="1">Fruits Pairfait</option>
+        <option value="2">Smoothie</option>
     </select>
     <button type="submit">Filter</button>
 </form>
