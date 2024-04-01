@@ -21,6 +21,7 @@ if (!$result) {
     die('Error fetching products: ' . mysqli_error($dbc));
 }
 ?>
+
 <!-- The video -->
 <video autoplay muted loop id="myVideo">
     <source src="video\parfait_video.mp4" type="video/mp4">
