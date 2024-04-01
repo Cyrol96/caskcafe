@@ -22,7 +22,7 @@ if (!$result) {
 }
 ?>
 <!-- The video -->
-<video autoplay muted loop id="myVideo">
+<video autoplay muted loop id="myVideo" width="100%">
     <source src="video\parfait_video.mp4" type="video/mp4">
 </video>
 
