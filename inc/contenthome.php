@@ -46,6 +46,7 @@ if (!$result) {
     <button type="submit">Filter</button>
 </form>
 
+
 <!-- products gallery images section -->
 <section class="products-gallery">
     <div class="container">
